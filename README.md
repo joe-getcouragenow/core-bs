@@ -4,6 +4,21 @@ core Bootstrap provides the tooling.
 
 Projects can make their main and modules as they see fit, and use this tooling for them.
 
+## Status
+
+Installing of makefile works.
+Installing of tools does not, due to relying on fish.
+
+
+## Development
+
+Core-bs is really just a thing that grabs an embeds bootstrap things from core-runtime. SO make changes there.
+
+Its designed this way because core-runtime needs the bootstraps files itself in order to itself run code.
+
+
+## Functions
+
 It has:
 
 1. binary tools that are reused on projects

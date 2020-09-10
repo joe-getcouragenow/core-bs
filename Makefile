@@ -12,7 +12,6 @@ override GO_FSPATH = $(PWD)
 override GO_BUILD_OUT_FSPATH = $(GOPATH)/bin
 override GO_BUILD_OUT_ALL_FSPATH = $(PWD)/targets
 override BS_ROOT_FSPATH = XXX
-GO_ARCH=go-arch
 override GO_ARCH=go-arch_override
 override GO_BIN_NAME=bs
 
@@ -23,22 +22,6 @@ STATIK_DEST = $(PWD)/statiks
 ## Print all settings
 this-print:
 	$(MAKE) go-print
-
-## Example to Print Variable override from make
-this-print-ex:
-	# prints specific overides
-	@echo BS_ROOT_FSPATH: 	$(BS_ROOT_FSPATH)
-
-	@echo GO_ARCH: 	$(GO_ARCH)
-	
-## Example to Print Variable override from env
-this-print-env-ex:
-	# prints specific overides
-	# Example call of override from env variable
-	# ``` GO_ARCH=GO_ARCH_FROMENV make -e print-env ```
-	@echo BS_ROOT_FSPATH: 	$(BS_ROOT_FSPATH)
-
-	@echo GO_ARCH: 	$(GO_ARCH)
 
 
 ## Build this.
@@ -62,3 +45,41 @@ this-build-clean:
 this-statiks:
 	go run sdk/cmd/bp/main.go -t $(PWD)/.tmp -o $(PWD)/statiks
 
+
+TEST_FSPATH=_testrepo
+
+## Run Test 
+this-test-run:
+	mkdir -p $(TEST_FSPATH)
+
+	## BS help
+	bs -h
+
+	## --- BS INFO --
+	bs info -h
+	bs info
+
+	## --- BS INIT --
+	bs init -h
+	cd $(TEST_FSPATH) && bs init ./boilerplate
+
+	## --- BS LIST --
+	#  Lists tools installed on any OS mapped paths (e.g go bin or os level)
+	bs list
+
+	## --- BS PKG --
+	#  Install and manage the tools
+	bs pkg 
+	bs pkg rigs -h
+
+	
+	bs pkg search lang
+	#bs pkg search *
+
+	bs pkg update all
+
+
+
+## Clean Test
+this-test-clean:
+	rm -rf $(TEST_FSPATH)
