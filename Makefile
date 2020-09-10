@@ -5,6 +5,7 @@
 # includes
 include ./boilerplate/help.mk
 include ./boilerplate/go.mk
+include ./boilerplate/gitr.mk
 
 
 # examples of how to override in root make file
